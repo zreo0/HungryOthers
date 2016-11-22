@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TestForShare</title>
+	<style>
+		*{
+			margin: 0; padding: 0; font-family: "Microsoft Yahei";
+		}
+		.container{
+			position: absolute;
+			word-break: break-all;
+		}
+
+		.JiaContainer{
+			position: relative;	
+			width: 50%;		
+
+		}
+
+		.BDContainer{
+			position: relative;
+			width: 50%;
+			margin-top: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="JiaContainer">
+			<section>
+				<h1 id="JiaTitle">Share from JiaThis</h1>
+				<p id="JiaContext">TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+			</section>
+			<img src="http://i.cqnews.net/cq/attachement/jpg/site82/20120517/f04da220bfea111ec5b313.jpg" alt="JiaThisTestImg" title="JiaThisTestImg" id="QRCode1" style="width: 200px; height: 200px" />
+			<!-- JiaThis Button BEGIN -->
+			<div class="jiathis_style_32x32">
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_weixin"></a>
+				<a class="jiathis_button_renren"></a>
+				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				<a class="jiathis_counter_style"></a>
+			</div>
+			<!-- JiaThis Button BEGIN -->
+			
+		</div>
+		
+		<br/>
+
+		<div class="BDContainer">
+			<section>
+				<h1 id="BDTitle">Share from Baidu</h1>
+				<p id="BDContext">TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest</p>
+			</section>
+			<img src="http://image.xinmin.cn/2015/08/11/12604882_171248.jpg" alt="BDTestImg" title="BDTestImg" id="QRCode2" style="width: 200px; height: 200px"/>
+			<!-- Baidu Button BEGIN -->
+			<div class="bdsharebuttonbox" data-tag="share_1">
+				<a class="bds_qzone" data-cmd="qzone" href="#"></a>
+				<a class="bds_tsina" data-cmd="tsina"></a>
+				<a class="bds_tqq" data-cmd="tqq"></a>
+				<a class="bds_weixin" data-cmd="weixin"></a>
+				<a class="bds_renren" data-cmd="renren"></a>
+				<a class="bds_more" data-cmd="more">更多</a>
+				<a class="bds_count" data-cmd="count"></a>
+			</div>
+			<!-- Baidu Button END -->
+			
+		</div>
+
+	</div>
+	<!-- JiaThis Button Config BEGIN -->
+	<script type="text/javascript">
+		var jiathis_config = {
+		    boldNum:0,
+		    siteNum:6,
+		    url:window.location.href,
+		    title:'#话题#'+document.getElementById('JiaTitle').innerHTML,
+		    summary:document.getElementById('JiaContext').innerHTML.length>100?document.getElementById('JiaContext').innerHTML.substr(0,100)+'...':document.getElementById('JiaContext').innerHTML,
+		    pic:document.getElementById('QRCode1').src
+		}
+	</script>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+	<!-- JiaThis Button Config END -->
+
+	<!-- Baidu Button Config BEGIN -->
+	<script type="text/javascript">
+		window._bd_share_config = {
+			common:{
+				//通用配置
+				bdText: '#话题#'+document.getElementById('BDTitle').innerHTML,
+				bdDesc: document.getElementById('BDContext').innerHTML.length>100?document.getElementById('BDContext').innerHTML.substr(0,100)+'...':document.getElementById('BDContext').innerHTML,
+				bdUrl: window.location.href,
+				bdPic: document.getElementById('QRCode2').src
+			},
+			share:[{
+				"bdSize": 64
+			}]
+
+		}
+	</script>
+	<script>
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+	<!-- Baidu Button Config END -->
+</body>
+</html>
