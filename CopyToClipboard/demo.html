@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Copy-js</title>
+</head>
+<body>
+	<div>
+		<!-- 输入框和button -->
+		<input type="text" placeholder="随便输入点什么" id="test1" />
+		<button onclick="copyToClipboard('test1')">点击复制输入框内容</button>
+		<br>
+		<!-- 文本框和inputButton -->
+		<p id="test2" style="display: inline-block;">一个普通的文本</p>
+		<input type="button" onclick="copyToClipboard('test2')" value="点击复制文本内容" />
+		<br>
+		<a href="http://www.baidu.com" onclick="copyToClipboard('test3'); return false" id="test3">http://www.baidu.com</a>
+		<br>
+		<input type="text" placeholder="粘贴进来看看" >
+	</div>
+	<script src="copyToCb.js"></script>
+</body>
+</html>
