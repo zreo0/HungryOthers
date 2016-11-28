@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="DataPoint" type="com.htsc.poc.data.DataPoint" />
+        <typeAlias alias="FinaProdDataItem" type="com.htsc.poc.data.FinaProdDataItem" />
+        <typeAlias alias="FundDataItem" type="com.htsc.poc.data.FundDataItem" />
+        <typeAlias alias="StockDataItem" type="com.htsc.poc.data.StockDataItem" />
+        <typeAlias alias="TagTreeEntry" type="com.htsc.poc.data.TagTreeEntry" />
+    </typeAliases>
+    <environments default="poc">
+        <environment id="poc">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/htsc_poc" />
+                <property name="username" value="root" />
+                <property name="password" value="root" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/htsc/poc/mappers/MybatisDataMapper.xml" />
+    </mappers>
+</configuration>

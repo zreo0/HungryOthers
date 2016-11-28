@@ -1,0 +1,148 @@
+﻿<div ng-controller="ClassificationCtrl">
+    <div class="row">
+
+		<!-- <js-xls onread="read" onerror="error"></js-xls> -->
+
+        <div id="simplewizard" class="wizard" data-target="#simplewizard-steps" ui-jq="wizard">
+            <ul class="steps">
+                <li data-target="#simplewizardstep1" class="active"><span class="step">1</span>数据源<span class="chevron"></span></li>
+                <li data-target="#simplewizardstep2"><span class="step">2</span>数据过滤<span class="chevron"></span></li>
+                <li data-target="#simplewizardstep3"><span class="step">3</span>字段选择<span class="chevron"></span></li>
+                <li data-target="#simplewizardstep4"><span class="step">4</span>模型计算<span class="chevron"></span></li>
+                <li data-target="#simplewizardstep5"><span class="step">5</span>模型结果<span class="chevron"></span></li>
+            </ul>
+            <div class="actions" id="simplewizard-actions">
+                <button type="button" class="btn btn-success btn-sm btn-prev"> <i class="fa fa-angle-left"></i>上一步</button>
+                <button type="button" class="btn btn-primary btn-sm btn-next" data-last="结  束">下一步<i class="fa fa-angle-right"></i></button>
+            </div>
+        </div>
+
+        <div class="step-content" id="simplewizard-steps">
+            <div class="step-pane active" id="simplewizardstep1">
+				<form class="form-horizontal" role="form"> 
+				    <div class="row">
+				        <div class="form-group">			              
+				            <label for="" class="col-md-1 control-label no-padding-right">数据类型：</label>
+				            <div class="col-md-2">
+				                <ui-select ng-model="datasource.type" theme="bootstrap" ng-change="chgSource()">
+				                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+				                    <ui-select-choices repeat="item.code as item in datasources | filter: $select.search">
+				                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+				                    </ui-select-choices>
+				                </ui-select>
+				            </div>
+
+				            <div ng-if="datasource.type=='Excel'">
+					            <label  for="" class="col-md-1 control-label no-padding-right">选择Sheet：</label>
+					            <div class="col-md-2">
+					                <ui-select ng-model="datasource.sheet" theme="bootstrap" ng-change="chgSheet()">
+					                    <ui-select-match placeholder="">{{$select.selected}}</ui-select-match>
+					                    <ui-select-choices repeat="item in datasource.sheets | filter: $select.search">
+					                        <div ng-bind-html="item | highlight: $select.search"></div>
+					                    </ui-select-choices>
+					                </ui-select>
+					            </div>
+
+					            <div class="col-md-2">
+					                <js-xls onread="read" onerror="error"></js-xls>
+					            </div>
+				            </div>
+
+				            <div ng-if="datasource.type=='Hive'">
+				            	<label  for="" class="col-md-1 control-label no-padding-right">Hive SQL：</label>
+				            	<div class="col-md-7"><textarea class="form-control" rows="3" style="outline:none;resize:none;" ng-model="hiveSQL"></textarea></div>
+				            	<div class="col-md-1"><button class="btn btn-primary btn-sm" ng-click="runHiveSQL()"><i class="fa fa-gear"></i>&nbsp;执行</button></div>
+				            </div>	
+				        </div>  
+				    </div>
+				</form>
+
+            </div>
+            <div class="step-pane" id="simplewizardstep2">
+				<div class="row" ng-show="curData != null">
+	            	<div class="col-md-6">
+						<div query-builder="criteriaOptions"></div>
+	            	</div>
+
+	            	<div class="col-md-5">
+	            		<pre ng-bind-html="output"></pre>
+	            	</div>
+
+	            	<div class="col-md-1"><button class="btn btn-primary btn-sm" ng-click="filterData()"><i class="fa fa-gear"></i>&nbsp;执行</button></div>
+
+
+	            </div>
+            </div>
+            <div class="step-pane" id="simplewizardstep3">
+            	<div class="row" ng-if="curData != null">
+	            	<div class="col-md-11">
+	            		
+                        <ui-select multiple ng-model="target.fields" theme="select2" style="min-width: 400px;">
+                            <ui-select-match placeholder="选择字段">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="field in criteriaOptions.fields | filter:$select.search">
+                                {{field.name}}
+                            </ui-select-choices>
+                        </ui-select>
+	            	</div>
+	            	<div class="col-md-1"><button class="btn btn-primary btn-sm" ng-click="selFactor()"><i class="fa fa-gear"></i>&nbsp;执行</button></div>
+	            </div>
+            </div>
+            <div class="step-pane" id="simplewizardstep4">
+			    <div class="row">
+			        <div class="form-group">			              
+			            <label for="" class="col-md-1 control-label no-padding-right">选择模型：</label>
+			            <div class="col-md-2">
+			                <ui-select ng-model="model.id" theme="bootstrap" ng-change="chgModel()">
+			                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+			                    <ui-select-choices repeat="item.code as item in models | filter: $select.search">
+			                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+			                    </ui-select-choices>
+			                </ui-select>
+			            </div>
+						<label for="" class="col-md-1 control-label no-padding-right">字段匹配：</label>
+						<div class="col-md-4">
+							<table class="table table-hover table-striped table-bordered table-condensed">
+                                <thead class="bordered-blueberry">
+                                    <tr class="bg-blue">
+                                        <th>#</th><th>模型字段</th><th>匹配数据字段</th>
+                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="field in fieldsMap">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{field.model}}</td>
+                                        <td style="padding-bottom: 2px; padding-top: 2px">
+                                        	<select ng-model="field.data" class="form-control" style="padding-bottom: 0px; padding-top: 0px; height: 25px;" ng-model="hstep" ng-options="opt for opt in selFields"></select> 	
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+						</div>
+
+
+				        <div class="col-md-1"><button class="btn btn-primary btn-sm" ng-click="runModel()"><i class="fa fa-gear"></i>&nbsp;执行</button></div>
+
+			        </div>
+
+			    </div>
+            </div>
+            <div class="step-pane" id="simplewizardstep5">This is step 5</div>
+        </div>
+        <div>
+	        <div class="widget">
+	            <div class="widget-header bg-primary">
+	                <span class="widget-caption">数据预览</span>
+	                <div class="widget-buttons">
+	                    <!-- <a href="" widget-maximize></a> -->
+	                    <a href="" widget-collapse></a>
+	                    <!-- <a href="" widget-dispose></a> -->
+	                </div>
+	            </div>
+	            <div class="widget-body no-padding">
+	                <div ng-grid="gridOptions" style="min-height:450px; overflow-x:hidden;"></div>
+	            </div>
+	        </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,336 @@
+﻿<div class="row" ng-controller="ProfileCtrl">
+    <div class="col-md-12">
+        <div class="profile-container">
+            <div class="profile-header row">
+                <div class="col-lg-2 col-md-4 col-sm-12 text-center ">
+                    <img src="assets/img/avatars/avatar.jpg" alt="" class="header-avatar" />
+                 </div>
+                <div class="col-lg-5 col-md-8 col-sm-12 profile-info">
+                    <div class="header-information">
+                         <table class="table table-striped">
+                            <tr> 
+                                <td>姓名：</td><td width="150px">欧阳 股神</td> <td>客户号：</td><td>1234567890</td> 
+                            </tr>
+                            <tr> 
+                                <td>股龄：</td><td>12年</td> <td>联系电话：</td><td>13812344321</td> 
+                            </tr>
+                            <tr> 
+                                <td>客户类别：</td><td>精英白领</td> <td>投资欲望：</td><td>强烈</td> 
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 profile-stats">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 stats-col">
+                            <div class="stats-value pink">398</div>
+                            <div class="stats-title">贡献度指标</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 stats-col">
+                            <div class="stats-value pink">803</div>
+                            <div class="stats-title">活跃度指标</div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 stats-col">
+                            <div class="stats-value pink">607</div>
+                            <div class="stats-title">忠诚度指标</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                            <!-- <i class="glyphicon glyphicon-map-marker"></i> Boston -->
+                            <div class="text-primary"><strong>专家型</strong></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                            <div class="text-primary"><strong>价值投资型</strong></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                            <div class="text-primary"><strong>成熟期</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-body">
+                <div class="col-lg-12">
+                    <tabset flat="true" justified="true">
+                        <tab heading="最新动态">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-line-chart"></i>
+                                            <span class="widget-caption">近一年收益率变化</span>
+                                            <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <div line-chart config="lineConfig" data="yieldData" height="250px"></div>
+
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-line-chart"></i>
+                                            <span class="widget-caption">近一年贡献度变化</span>
+                                            <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <div line-chart config="lineConfig" data="contributionData" height="250px"></div>
+
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                            </div>
+                            
+                        </tab>
+                        <tab heading="资产状况">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-line-chart"></i>
+                                            <span class="widget-caption">资产组成</span>
+                                            <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <div pie-chart config="pieConfig" data="propertyData" height="203px"></div>
+
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-table"></i>
+                                            <span class="widget-caption">{{propertyType}} 持仓Top5</span>
+                                            <div class="widget-buttons">
+                                                <div class="btn-group">
+                                                    <a class="btn btn-magenta btn-sm " href="javascript:void(0);">{{propertyType}}</a>
+                                                    <a class="btn btn-magenta btn-sm dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"><i class="fa fa-angle-down"></i></a>
+                                                    <ul class="dropdown-menu dropdown-blue pull-left">
+                                                        <li>
+                                                            <a href="javascript:void(0);">股票</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0);">开放基金</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0);">封闭基金</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0);">理财产品</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <table class="table table-hover">
+                                                <thead class="bordered-darkorange">
+                                                    <tr>
+                                                        <th>#</th><th>股票代码</th><th>股票名称</th><th>涨跌</th>
+                                                        <th>当前股价</th><th>持仓（手）</th><th>总价值</th>
+                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in stockData">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{item.code}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td ng-class="{true:'text-danger',false:'text-success'}[item.trend>=0]">
+                                                            {{item.trend}} %</td>
+                                                        <td>{{item.price}}</td>
+                                                        <td>{{item.quantity}}</td>
+                                                        <td>{{item.amount}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                            </div>
+                        </tab>
+                        <tab heading="投资偏好">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-line-chart"></i>
+                                            <span class="widget-caption">资产比重变化</span>
+                                            <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <div bar-chart config="barConfig" data="propWeightData" height="257px"></div>
+
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-line-chart"></i>
+                                            <span class="widget-caption">投资偏好</span>
+                                            <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <div class="well with-header">
+                                                <div class="header bordered-info bg-pink">行业</div>
+                                                <div>
+                                                    <span class="label label-pink">非银金融</span>
+                                                    <span class="label label-pink">运输物流</span>
+                                                    <span class="label label-pink">精密高科</span>
+                                                </div>
+                                            </div>
+                                            <div class="well with-header">
+                                                <div class="header bordered-info bg-purple">概念</div>
+                                                <div>
+                                                    <span class="label label-purple">一带一路</span>
+                                                    <span class="label label-purple">强国建设</span>
+                                                </div>
+                                            </div>
+
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                            </div>
+                        </tab>
+                        <tab heading="投资推荐">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-table"></i>
+                                            <span class="widget-caption">基金推荐Top5</span>
+                                         <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <table class="table table-hover">
+                                                <thead class="bordered-darkorange">
+                                                    <tr>
+                                                        <th>#</th><th>基金代码</th><th>基金名称</th><th>涨跌</th><th>当前净值</th>
+                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in fundData">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{item.code}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td ng-class="{true:'text-danger',false:'text-success'}[item.trend>=0]">
+                                                            {{item.trend}} %</td>
+                                                        <td>{{item.price}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-table"></i>
+                                            <span class="widget-caption">理财产品推荐Top5</span>
+                                         <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body">
+                                            <table class="table table-hover">
+                                                <thead class="bordered-darkorange">
+                                                    <tr>
+                                                        <th>#</th><th>理财产品代码</th><th>理财产品名称</th><th>预期年化收益</th><th>周期</th>
+                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in finaProdData">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{item.code}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td ng-class="{true:'text-danger',false:'text-success'}[item.yearYield>=0]">
+                                                            {{item.yearYield}} %</td>
+                                                        <td>{{item.period}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                            </div>
+                        </tab>
+
+                        <tab heading="用户标签">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="widget">
+                                        <div class="widget-header bg-blue">
+                                            <i class="widget-icon fa fa-user-plus"></i>
+                                            <span class="widget-caption">用户标签</span>
+                                         <div class="widget-buttons">
+                                                <a href="" widget-config></a>
+                                                <!-- <a href="" widget-maximize></a> -->
+                                                <a href="" widget-collapse></a>
+                                                <a href="" widget-dispose></a>
+                                            </div><!--Widget Buttons-->
+                                        </div><!--Widget Header-->
+                                        <div class="widget-body" >
+                                            <collapsible-tree nodes='nodes' width="800" height='350'></collapsible-tree>
+                                        </div><!--Widget Body-->
+                                    </div><!--Widget-->
+                                </div>
+
+                        </tab>
+
+
+                    </tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

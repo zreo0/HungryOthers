@@ -1,0 +1,71 @@
+﻿<div class="row" ng-controller="PersonalityCtrl">
+<form class="form-horizontal" role="form"> 
+    <div class="row">
+        <div class="form-group">
+            <label for="" class="col-md-1 control-label no-padding-right">起止日期：</label>
+            <div class="col-md-2">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="searcher.dtStart" is-open="fromOpened" datepicker-options="dateOptions" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event,1)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="searcher.dtEnd" is-open="toOpened" datepicker-options="dateOptions" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event,2)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+              
+            <label for="" class="col-md-1 control-label no-padding-right">购买渠道：</label>
+            <div class="col-md-2">
+                <ui-select ng-model="searcher.channel" theme="bootstrap">
+                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in channels | filter: $select.search">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+            <div class="col-md-3">
+                <a class="btn btn-success" href="javascript:void(0);"><i class="fa fa-plus"></i> 添加指标</a>
+                <a class="btn btn-primary" ng-click="search()"><i class="fa fa-search"></i> 查询</a>
+            </div>
+
+        </div>  
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-3">
+            <div class="orders-container">
+                <div class="orders-header">
+                    <h6>客户列表</h6>
+                </div>
+                <ul class="orders-list" ng-repeat="item in customers">
+                    <li class="order-item">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
+                                <div class="item-booker">{{item.name}}</div>
+                                <div class="item-time">
+                                    <i class="fa fa-phone"></i>
+                                    <span>{{item.tel}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="item-more" href="">
+                            <i></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9">
+        hello
+        </div>
+    </div>     
+
+</form>
+</div>

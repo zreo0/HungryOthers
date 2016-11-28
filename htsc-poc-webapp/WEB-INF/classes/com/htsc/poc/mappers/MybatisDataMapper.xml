@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htsc.poc.mappers.MybatisDataMapper">
+    <resultMap type="DataPoint" id="DataPoints">
+        <result property="x" column="x" />
+        <result property="y" column="y" />
+    </resultMap>
+    <resultMap type="FinaProdDataItem" id="FinaProdData">
+        <result property="code" column="code" />
+        <result property="name" column="name" />
+        <result property="yearYield" column="year_yield" />
+        <result property="period" column="period" />
+    </resultMap>
+    <resultMap type="FundDataItem" id="FundData">
+        <result property="code" column="code" />
+        <result property="name" column="name" />
+        <result property="price" column="price" />
+        <result property="trend" column="trend" />
+    </resultMap>
+    <resultMap type="StockDataItem" id="StockData">
+        <result property="code" column="code" />
+        <result property="name" column="name" />
+        <result property="quantity" column="quantity" />
+        <result property="price" column="price" />
+        <result property="trend" column="trend" />
+        <result property="amount" column="amount" />
+    </resultMap>
+    <resultMap type="TagTreeEntry" id="TagTreeData">
+        <result property="id" column="id" />
+        <result property="parentid" column="parentid" />
+        <result property="name" column="name" />
+    </resultMap>
+
+    <select id="findAllYieldData" resultMap="DataPoints">
+        SELECT * FROM yield_data
+    </select>
+    <select id="findAllContributionData" resultMap="DataPoints">
+        SELECT * FROM contribution_data
+    </select>
+    <select id="findAllFundWeightData" resultMap="DataPoints">
+        SELECT * FROM fund_weight_data
+    </select>
+    <select id="findAllProductWeightData" resultMap="DataPoints">
+        SELECT * FROM product_weight_data
+    </select>
+    <select id="findAllPropertyData" resultMap="DataPoints">
+        SELECT * FROM property_data
+    </select>
+    <select id="findAllStockWeightData" resultMap="DataPoints">
+        SELECT * FROM stock_weight_data
+    </select>
+
+    <select id="findAllFinaProdData" resultMap="FinaProdData">
+        SELECT * FROM finance_product_data
+    </select>
+    <select id="findAllFundData" resultMap="FundData">
+        SELECT * FROM fund_data
+    </select>
+    <select id="findAllStockData" resultMap="StockData">
+        SELECT * FROM stock_data
+    </select>
+    <select id="findAllTagTreeData" resultMap="TagTreeData">
+        SELECT * FROM tag_tree order by id asc
+    </select>
+
+</mapper>
